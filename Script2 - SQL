@@ -1,0 +1,78 @@
+CREATE DATABASE IF NOT EXISTS USCS_SELECT;
+use USCS_SELECT;
+create table IF NOT EXISTS curso
+(codigo_curso char(3) primary key,
+nome_curso char(30) not null
+
+);
+create table IF NOT EXISTS aluno
+(codigo_alu int unsigned primary key NOT NULL AUTO_INCREMENT
+UNIQUE,
+nome_alu char(20) not null,
+cpf_alu char(11) not null,
+data_inicio_alu date,
+curso_alu char(3) not null,
+constraint foreign key (curso_alu) references curso (codigo_curso)
+);
+create table IF NOT EXISTS materia (
+codigo_mat char(5) primary key,
+nome_mat char(20) not null,
+curso_mat char(3) not null
+# constraint foreign key (curso_mat) references curso (codigo_curso)
+);
+alter table materia add constraint foreign key (curso_mat) references curso
+(codigo_curso);
+insert into curso (codigo_curso, nome_curso) values
+(&#39;ADS&#39;, &#39;An e Des de Sistemas&#39;);
+insert into curso (codigo_curso, nome_curso) values
+(&#39;CC&#39;, &#39;Ciência da Computação&#39;);
+insert into curso (codigo_curso, nome_curso) values
+(&#39;JG&#39;, &#39;Jogos Digitais&#39;);
+insert into curso (codigo_curso, nome_curso) values
+(&#39;SI&#39;, &#39;Sistemas de Informação&#39;);
+insert into curso (codigo_curso, nome_curso) values
+(&#39;SEG&#39;, &#39;Segurança da Informação&#39;);
+select * from curso;
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;João&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;CC&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Joaquim&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;ADS&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Madalena&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;CC&#39;);
+
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Altair&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;CC&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Roberto&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;ADS&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Henrique&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;JG&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Osmar&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;CC&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Afonso&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;SEG&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Carlos&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;SEG&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Alberto&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;SI&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Renato&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;ADS&#39;);
+insert into aluno
+(nome_alu, cpf_alu, data_inicio_alu, curso_alu) values
+(&#39;Bob&#39;, &#39;11111111111&#39;, 01/01/2000, &#39;SEG&#39;);
+select * from aluno;
+insert into materia (codigo_mat, nome_mat, curso_mat) values
+(&#39;BDII&#39;, &#39;Banco de Dados II&#39;, &#39;CC&#39;);
+select * from materia;
+
+UPDATE aluno SET curso_alu = &#39;ADS&#39; where codigo_alu = 12;
